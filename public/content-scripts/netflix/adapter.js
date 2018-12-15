@@ -56,7 +56,7 @@ class NetflixAdapter extends Adapter {
 
   // Get the HTML5 video element
   getVideo() {
-      const videoId = getVideoId();
+      const videoId = this.getVideoId();
       return document.evaluate(`//*[@id="${videoId}"]/video`,document).iterateNext()
   }
 

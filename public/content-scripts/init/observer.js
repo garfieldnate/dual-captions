@@ -130,6 +130,13 @@ class Observer {
       let text = newCaption.innerText;
       let words = text.split(' ');
       let container = document.createElement('span');
+      container.onmouseenter = () => {
+          window.DC.adapter.getVideo().pause();
+      };
+      container.onmouseleave = () => {
+          // TODO: should only play if pause was done by mouseenter event
+          window.DC.adapter.getVideo().play();
+      }
       words.forEach(word => {
           let span = document.createElement("span");
           span.setAttribute("class", "nlpl-word-span");
