@@ -122,6 +122,24 @@ class Observer {
     }
   }
 
+  _style_caption(newCaption) {
+      // Very hacky for development, just for now
+      // needs much more careful processing to do it right,
+      // since we need NLP for word separation/lemma retrieval
+      // and there might be HTML interspersed
+      let text = newCaption.innerText;
+      let words = text.split(' ');
+      let container = document.createElement('span');
+      words.forEach(word => {
+          let span = document.createElement("span");
+          span.setAttribute("class", "nlpl-word-span");
+          span.appendChild(document.createTextNode(word));
+          container.appendChild(span);
+      });
+      newCaption.innerHTML = '';
+      newCaption.appendChild(container);
+  }
+
   _onMutation(mutationRecords) {
     mutationRecords.forEach(mutation => {
       let captionWasAdded = window.DC.adapter.captionWasAdded(mutation);
@@ -129,6 +147,7 @@ class Observer {
         const newCaptionOrder = window.DC.adapter.getNewCaptionOrder();
         let newCaption = window.DC.adapter.getNewCaption(mutation);
         if (newCaption) {
+            this._style_caption(newCaption);
           this.lastCaption = newCaption.innerText;
           newCaption.classList.add('original-caption');
           if (!this.delayRenderingUntilTranslation) {

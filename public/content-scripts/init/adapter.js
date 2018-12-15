@@ -61,6 +61,11 @@ class Adapter {
     return document.querySelector('.player');
   }
 
+  // Get the HTML5 video element
+  getVideo() {
+      return undefined;
+  }
+
   // Get the caption window element.
   getCaptionWindow() {
     return document.querySelector('.caption-window');

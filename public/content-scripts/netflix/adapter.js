@@ -54,6 +54,12 @@ class NetflixAdapter extends Adapter {
     return document.querySelector('.VideoContainer');
   }
 
+  // Get the HTML5 video element
+  getVideo() {
+      const videoId = getVideoId();
+      return document.evaluate(`//*[@id="${videoId}"]/video`,document).iterateNext()
+  }
+
   // Get the caption window element.
   getCaptionWindow() {
     return document.querySelector('.player-timedtext');
@@ -102,11 +108,19 @@ class NetflixAdapter extends Adapter {
 
   // Append the new caption to the DOM
   appendToDOM(element) {
+
+      let bringBackDefault = function(event) {
+          event.returnValue = true;
+      };
+
+    let playerTimedTextDiv = document.querySelector(".player-timedtext");
+    playerTimedTextDiv.addEventListener("selectstart", bringBackDefault, false);
     let dcWindow = this.getDCWindow();
     if (!dcWindow) {
       dcWindow = this.makeDCWindow();
     }
     dcWindow.appendChild(element);
+
     this._repositionNetflixCaptions(dcWindow);
   }
 

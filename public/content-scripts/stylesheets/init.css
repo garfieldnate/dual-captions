@@ -5,3 +5,18 @@
 .original-caption.translated {
   filter: opacity(1) !important;
 }
+
+/* Undo Netflix style preventing interaction with text */
+.player-timedtext {
+    user-select: text;
+    z-index: 1000000;
+}
+
+/* But don't let the subtitles prevent the user from using the controls */
+.PlayerControlsNeo__core-controls {
+    z-index: 1000001;
+}
+
+.nlpl-word-span:hover {
+    background-color: dodgerblue;
+}

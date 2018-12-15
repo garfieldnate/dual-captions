@@ -7,7 +7,7 @@ determineState()
 This action determines the popup's initial state.
 It does so by checking the observer's state (dcState) and checking chrome.storage for a saved store.
 It will prefer any settings in the observer, falling back to chrome.storage if the observer has default settings.
-Some settings are only saved in chrome.storage, like UI language of the popup, and will be applied seperately if available.
+Some settings are only saved in chrome.storage, like UI language of the popup, and will be applied separately if available.
 
 **/
 

@@ -30,7 +30,7 @@ class NetflixTranslationProcessor {
             ok: false,
             error: err
           });
-        })
+        });
       break;
     }
   }
